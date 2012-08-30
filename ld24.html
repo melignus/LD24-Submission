@@ -3,10 +3,31 @@
     <head>
         <title>Test</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="lib/melonJS-0.9.4.js"></script>
+        <script type="text/javascript" src="lib/QuadTree.js"></script>
         <script type="text/javascript" src="lib/ld24.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                main_sheet = new Image();
+                main_sheet.src = "res/main_sheet.png";
+                main_sheet.onload = function() {
+                    var tCell = new Game({
+                        el: '#tCell',
+                        spritesheet: main_sheet,
+                        level: LEVEL,
+                    });
+
+                    setInterval(function() {
+                        tCell.update();
+                        tCell.render();
+                    }, 1000/60);
+                };
+            });
+        </script>
     </head>
 
     <body bgcolor="black">
-        <canvas id="canvas" width="640" height="480"/>
+        <canvas style="border: 1px solid white;" id="tCell" width="800" height="600"></canvas>
     </body>
 </html>
